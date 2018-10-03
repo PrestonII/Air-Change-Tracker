@@ -53,16 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainObjects\IP.cs" />
-    <Compile Include="DomainObjects\LightingEquipmentLoad.cs" />
-    <Compile Include="Services\LookupService.cs" />
-    <Compile Include="DomainObjects\MechanicalCode_2013.cs" />
-    <Compile Include="DomainObjects\MechanicalCode_2014.cs" />
-    <Compile Include="DomainObjects\MechanicalCode_ASHRAE_170.cs" />
+    <Compile Include="DomainObjects\Ventilation\IP.cs" />
+    <Compile Include="DomainObjects\Ventilation\LightingEquipmentLoad.cs" />
+    <Compile Include="Services\VentilationLookupService.cs" />
+    <Compile Include="DomainObjects\Ventilation\MechanicalCode_2013.cs" />
+    <Compile Include="DomainObjects\Ventilation\MechanicalCode_2014.cs" />
+    <Compile Include="DomainObjects\Ventilation\MechanicalCode_ASHRAE_170.cs" />
     <Compile Include="Services\OccupancyCategoryFactory.cs" />
-    <Compile Include="DomainObjects\OccupancyLookup.cs" />
-    <Compile Include="DomainObjects\PressureRelationship.cs" />
-    <Compile Include="DomainObjects\SI.cs" />
+    <Compile Include="DomainObjects\Ventilation\OccupancyLookup.cs" />
+    <Compile Include="DomainObjects\Ventilation\PressureRelationship.cs" />
+    <Compile Include="DomainObjects\Ventilation\SI.cs" />
     <Compile Include="SpacePropertyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentilationResolver.cs" />

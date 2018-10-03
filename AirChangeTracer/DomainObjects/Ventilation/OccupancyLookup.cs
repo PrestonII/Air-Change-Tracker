@@ -1,4 +1,4 @@
-﻿namespace AirChangeTracer.DomainObjects
+﻿namespace AirChangeTracer.DomainObjects.Ventilation
 {
     public class OccupancyLookup
     {

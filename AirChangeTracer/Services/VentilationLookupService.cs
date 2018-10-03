@@ -7,26 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AirChangeTracer.DomainObjects;
+using AirChangeTracer.DomainObjects.Ventilation;
 
 namespace AirChangeTracer.Services
 {
-    public class LookupService
+    public class VentilationLookupService
     {
-        public void ReadCSVToList(string path)
+        public void ReadCSVToList(string path, int startOfData = 0)
         {
-
-            OccupancyLookup thing = null;
+            List<OccupancyLookup> occList = new List<OccupancyLookup>();
             var reader = File.OpenText(path);
             var csv = new CsvReader(reader);
 
             while (csv.Read())
             {
-                if (csv.Context.Row <= 4)
+                if (csv.Context.Row <= startOfData)
                     continue;
 
                 var row = csv.Context.Record;
-
-                
+                var occCat = OccupancyCategoryFactory.Create(row);
+                occList.Add(occCat);
             }
         }
     }

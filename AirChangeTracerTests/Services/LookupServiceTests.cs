@@ -13,7 +13,7 @@ namespace AirChangeTracer.Services.Tests
     public class LookupServiceTests
     {
         private string _lookupFilePath;
-        private LookupService _service;
+        private VentilationLookupService _service;
 
         [SetUp]
         public void Initialize()
@@ -26,8 +26,8 @@ namespace AirChangeTracer.Services.Tests
         [Test]
         public void ReadCSVToListTest()
         {
-            _service = new LookupService();
-            _service.ReadCSVToList(_lookupFilePath);
+            _service = new VentilationLookupService();
+            _service.ReadCSVToList(_lookupFilePath, 4);
         }
     }
 }
