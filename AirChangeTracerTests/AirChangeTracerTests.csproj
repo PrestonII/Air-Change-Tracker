@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\Lookup_VentilationTable.csv">
+    <None Include="Data\Lookup_VentilationTable.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -12,22 +12,28 @@ namespace AirChangeTracer.Services.Tests
     [TestFixture()]
     public class LookupServiceTests
     {
-        private string _lookupFilePath;
         private VentilationLookupService _service;
 
         [SetUp]
         public void Initialize()
         {
-            var buildLocation = Path.GetDirectoryName(GetType().Assembly.Location);
-            var dirname = Path.Combine(buildLocation, "Resources");
-            _lookupFilePath = Path.Combine(dirname, "Lookup_VentilationTable.csv");
+            _service = new VentilationLookupService();
+        }
+
+        [Test]
+        public void ShouldBeAbleToFindDataFile()
+        {
+            var path = _service.TypicalDataLocation;
+
+            Assert.IsNotNull(path);
+            Assert.IsTrue(path.Contains("Lookup_VentilationTable.csv"));
+            Assert.IsTrue(File.Exists(path));
         }
 
         [Test]
         public void ShouldBeAbleToReadCSVToListOfOccupancyObjects()
         {
-            _service = new VentilationLookupService();
-            var list = _service.ReadCSVToList(_lookupFilePath, 4);
+            var list = _service.ReadCSVToList(startOfData: 4);
 
             Assert.IsNotEmpty(list);
         }
@@ -35,8 +41,7 @@ namespace AirChangeTracer.Services.Tests
         [Test]
         public void ShouldHave_AllIsolationAnteRoom_AsFirstCategory()
         {
-            _service = new VentilationLookupService();
-            var list = _service.ReadCSVToList(_lookupFilePath, 4);
+            var list = _service.ReadCSVToList( startOfData: 4);
 
             var first = list.First();
             var expected = "AII - Isolation Anteroom";
