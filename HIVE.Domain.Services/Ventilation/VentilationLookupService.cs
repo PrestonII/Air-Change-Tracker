@@ -1,15 +1,9 @@
 ﻿using CsvHelper;
-using CsvHelper.Configuration;
-using System;
+using HIVE.Domain.Entities.Ventilation;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AirChangeTracer.DomainObjects;
-using AirChangeTracer.DomainObjects.Ventilation;
 
-namespace AirChangeTracer.Services
+namespace Hive.Domain.Services.Ventilation
 {
     public class VentilationLookupService
     {

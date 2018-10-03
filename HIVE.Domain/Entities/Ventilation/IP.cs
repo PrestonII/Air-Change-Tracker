@@ -1,6 +1,6 @@
-﻿namespace AirChangeTracer.DomainObjects.Ventilation
+﻿namespace HIVE.Domain.Entities.Ventilation
 {
-    public class SI
+    public class IP
     {
         public double? Rp { get; set; }
         public double? Ra { get; set; }

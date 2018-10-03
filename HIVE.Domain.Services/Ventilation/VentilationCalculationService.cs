@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AirChangeTracer.Services
+namespace Hive.Domain.Services.Ventilation
 {
-    public class CalculationService_ASHRAE_170
+    public abstract class BaseVentilationCalculationService
     {
-        private const double Time = 60.0;
+        protected const double Time = 60.0;
 
-        public double CalculateVentACH(double area, double ceilingHeight, double percentageOutsideAir)
+        public abstract double CalculateMaxACH();
+
+    }
+
+    public class CalculationService_ASHRAE_170 : BaseVentilationCalculationService
+    {
+        public double CalculateCFMBasedOnVentACH(double area, double ceilingHeight, double percentageOutsideAir)
         {
             // find ventACH based on lookup
             double ventACH = 0;
@@ -19,19 +21,22 @@ namespace AirChangeTracer.Services
 
             double finalCFM = temp / percentageOutsideAir;
 
-            return finalCFM; throw new NotImplementedException();
+            return finalCFM; 
         }
 
-        public double CalculateSupplyACH()
+        public double CalculateCFMBasedOnSupplyACH()
         {
             throw new NotImplementedException();
         }
 
         // Next, take the max between the previous two
-        public void FindMaxACH()
+        public override double CalculateMaxACH()
         {
-            // return greater btwn ventACH method and suppACH
+            //var ventCFM = CalculateCFMBasedOnVentACH();
+            //var supplyCFM = CalculateCFMBasedOnSupplyACH();
 
+            //return ventCFM > supplyCFM ? ventCFM : supplyCFM;
+            throw new NotImplementedException();
         }
     }
 

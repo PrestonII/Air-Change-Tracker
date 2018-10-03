@@ -7,8 +7,8 @@
     <ProjectGuid>{ADA222F5-0036-42AF-856B-799EC64E8505}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AirChangeTracer</RootNamespace>
-    <AssemblyName>AirChangeTracer</AssemblyName>
+    <RootNamespace>Hive.Revit</RootNamespace>
+    <AssemblyName>Hive.Revit</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -34,9 +34,6 @@
     <Reference Include="AdWindows">
       <HintPath>references\revit\2017\AdWindows.dll</HintPath>
     </Reference>
-    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
-      <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>references\revit\2017\RevitAPI.dll</HintPath>
     </Reference>
@@ -53,30 +50,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainObjects\Ventilation\IP.cs" />
-    <Compile Include="DomainObjects\Ventilation\LightingEquipmentLoad.cs" />
-    <Compile Include="Services\VentilationCalculationService.cs" />
-    <Compile Include="Services\VentilationLookupService.cs" />
-    <Compile Include="DomainObjects\Ventilation\MechanicalCode_2013.cs" />
-    <Compile Include="DomainObjects\Ventilation\MechanicalCode_2014.cs" />
-    <Compile Include="DomainObjects\Ventilation\MechanicalCode_ASHRAE_170.cs" />
-    <Compile Include="Services\OccupancyCategoryFactory.cs" />
-    <Compile Include="DomainObjects\Ventilation\OccupancyLookup.cs" />
-    <Compile Include="DomainObjects\Ventilation\PressureRelationship.cs" />
-    <Compile Include="DomainObjects\Ventilation\SI.cs" />
     <Compile Include="SpacePropertyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentilationResolver.cs" />
     <Compile Include="VentilationResolverCommand.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ACT.addin">
+    <None Include="hive.addin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\Lookup_VentilationTable.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hive.Domain.Services\HIVE.Domain.Services.csproj">
+      <Project>{52b52ffa-7460-4785-a188-9f7cbe46cc8a}</Project>
+      <Name>HIVE.Domain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HIVE.Domain\HIVE.Domain.csproj">
+      <Project>{0773a3f7-7802-4a6c-a705-75dcda024df1}</Project>
+      <Name>HIVE.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

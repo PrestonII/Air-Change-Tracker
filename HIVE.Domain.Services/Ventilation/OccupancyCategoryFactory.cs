@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AirChangeTracer.DomainObjects;
-using AirChangeTracer.DomainObjects.Ventilation;
+﻿using HIVE.Domain.Entities.Ventilation;
+using System;
 
-namespace AirChangeTracer.Services
+namespace Hive.Domain.Services.Ventilation
 {
     public class OccupancyCategoryFactory
     {

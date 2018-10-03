@@ -1,4 +1,4 @@
-﻿namespace AirChangeTracer.DomainObjects.Ventilation
+﻿namespace HIVE.Domain.Entities.Ventilation
 {
     public class MechanicalCode_ASHRAE_170
     {

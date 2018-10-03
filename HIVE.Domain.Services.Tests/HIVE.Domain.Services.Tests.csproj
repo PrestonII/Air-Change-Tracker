@@ -7,8 +7,8 @@
     <ProjectGuid>{AC50B6ED-9450-4C35-B0C6-094179746D3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AirChangeTracerTests</RootNamespace>
-    <AssemblyName>AirChangeTracerTests</AssemblyName>
+    <RootNamespace>HIVE.Domain.Services.Tests</RootNamespace>
+    <AssemblyName>HIVE.Domain.Services.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,9 +63,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AirChangeTracer\AirChangeTracer.csproj">
-      <Project>{ADA222F5-0036-42AF-856B-799EC64E8505}</Project>
-      <Name>AirChangeTracer</Name>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hive.Domain.Services\HIVE.Domain.Services.csproj">
+      <Project>{52b52ffa-7460-4785-a188-9f7cbe46cc8a}</Project>
+      <Name>HIVE.Domain.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HIVE.Domain\HIVE.Domain.csproj">
+      <Project>{0773a3f7-7802-4a6c-a705-75dcda024df1}</Project>
+      <Name>HIVE.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
