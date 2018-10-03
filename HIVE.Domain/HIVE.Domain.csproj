@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Element.cs" />
+    <Compile Include="Entities\IElement.cs" />
     <Compile Include="Entities\Space.cs" />
     <Compile Include="Entities\Ventilation\IP.cs" />
     <Compile Include="Entities\Ventilation\LightingEquipmentLoad.cs" />
