@@ -26,21 +26,38 @@ namespace AirChangeTracer.Services
                 if (csv.Context.Row <= 4)
                     continue;
 
-                var value1 = csv.GetField(0);
-                var value2 = csv.GetField(1);
-                var value3 = csv.GetField(2);
-                var value4 = csv.GetField(3);
+                var occCat = csv.GetField(0);
+                var iprp = csv.GetField(1);
+                var ipra = csv.GetField(2);
+                var sirp = csv.GetField(3);
+                var sira = csv.GetField(3);
+                var defaultDens = csv.GetField(4);
+                var exhReqs2013 = csv.GetField(5);
+                //var blank0 = csv.GetField(6);
+                // 2014 mech code reqs
+                var outdoorAir = csv.GetField(7);
+                var maxOccDen = csv.GetField(8);
+                var exhReqs2014 = csv.GetField(9);
+                // ashrae 170
+                //var blank0 = csv.GetField(10)
+                var ventACPH = csv.GetField(11);
 
                 thing = new OccupancyLookup
                 {
-                    OccupancyCategory = value1,
+                    OccupancyCategory = occCat,
                     OutdoorAirRates = new OutdoorAirRates
                     {
                         IP = new IP
                         {
-                            Rp = value2,
-                            Ra = value3
-                        }
+                            Rp = iprp,
+                            Ra = ipra
+                        },
+                        SI = new SI
+                        {
+                            Rp = sirp,
+                            Ra = sira,
+                        },
+                        DefaultOccupancyDensity = 
                     }
                 };
 
