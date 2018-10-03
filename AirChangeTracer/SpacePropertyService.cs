@@ -12,7 +12,6 @@ namespace AirChangeTracer
         public void GetSpaceTypeAsString(Space sp)
         {
             var sp_type = sp.SpaceType.ToString();
-            
         }
 
         // AddSomeParameter
