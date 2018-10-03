@@ -15,5 +15,11 @@ namespace AirChangeTracer
             
         }
 
+        // AddSomeParameter
+        // FindSomeParameter
+        public void GetOutsideAirChanges(Space space)
+        {
+
+        }
     }
 }

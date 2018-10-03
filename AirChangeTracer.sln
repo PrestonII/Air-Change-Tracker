@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirChangeTracer", "AirChangeTracer\AirChangeTracer.csproj", "{ADA222F5-0036-42AF-856B-799EC64E8505}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirChangeTracerTests", "AirChangeTracerTests\AirChangeTracerTests.csproj", "{AC50B6ED-9450-4C35-B0C6-094179746D3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{ADA222F5-0036-42AF-856B-799EC64E8505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADA222F5-0036-42AF-856B-799EC64E8505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADA222F5-0036-42AF-856B-799EC64E8505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC50B6ED-9450-4C35-B0C6-094179746D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC50B6ED-9450-4C35-B0C6-094179746D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC50B6ED-9450-4C35-B0C6-094179746D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC50B6ED-9450-4C35-B0C6-094179746D3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
