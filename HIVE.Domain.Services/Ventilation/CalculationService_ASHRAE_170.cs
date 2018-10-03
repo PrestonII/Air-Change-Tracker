@@ -39,7 +39,7 @@ namespace Hive.Domain.Services.Ventilation
         }
 
         // Next, take the max between the previous two
-        public override double CalculateMaxACH(Space space)
+        public override double CalculateMaxCFMByComparison(Space space)
         {
             var ventCFM = CalculateCFMBasedOnVentACH(space);
             var supplyCFM = CalculateCFMBasedOnSupplyACH(space);

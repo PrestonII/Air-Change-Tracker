@@ -1,15 +1,23 @@
 ﻿using System;
+using HIVE.Domain.Entities;
 
 namespace Hive.Domain.Services.Ventilation
 {
-    public class CalculationService_ASHRAE_621
+    public class CalculationService_ASHRAE_621 : BaseVentilationCalculationService
     {
-        public double CalculateVentACH()
+        public CalculationService_ASHRAE_621(ILookupService service) : base(service) { }
+
+        public double CalculateCFMBasedOnExhaustACH()
         {
             throw new NotImplementedException();
         }
 
-        public double CalculateExhaustACH()
+        public override double CalculateCFMBasedOnVentACH(Space space)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override double CalculateMaxCFMByComparison(Space space)
         {
             throw new NotImplementedException();
         }

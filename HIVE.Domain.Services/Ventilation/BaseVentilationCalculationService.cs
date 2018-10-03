@@ -12,7 +12,7 @@ namespace Hive.Domain.Services.Ventilation
             _lookupService = service;
         }
 
-        public abstract double CalculateMaxACH(Space space);
+        public abstract double CalculateMaxCFMByComparison(Space space);
         public abstract double CalculateCFMBasedOnVentACH(Space space);
     }
 }
