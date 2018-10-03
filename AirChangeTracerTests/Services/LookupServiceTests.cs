@@ -24,10 +24,26 @@ namespace AirChangeTracer.Services.Tests
         }
 
         [Test]
-        public void ReadCSVToListTest()
+        public void ShouldBeAbleToReadCSVToListOfOccupancyObjects()
         {
             _service = new VentilationLookupService();
-            _service.ReadCSVToList(_lookupFilePath, 4);
+            var list = _service.ReadCSVToList(_lookupFilePath, 4);
+
+            Assert.IsNotEmpty(list);
+        }
+
+        [Test]
+        public void ShouldHave_AllIsolationAnteRoom_AsFirstCategory()
+        {
+            _service = new VentilationLookupService();
+            var list = _service.ReadCSVToList(_lookupFilePath, 4);
+
+            var first = list.First();
+            var expected = "AII - Isolation Anteroom";
+            var actual = first.OccupancyCategory;
+
+            Assert.IsNotNull(first);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

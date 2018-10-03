@@ -13,7 +13,7 @@ namespace AirChangeTracer.Services
 {
     public class VentilationLookupService
     {
-        public void ReadCSVToList(string path, int startOfData = 0)
+        public List<OccupancyLookup> ReadCSVToList(string path, int startOfData = 0)
         {
             List<OccupancyLookup> occList = new List<OccupancyLookup>();
             var reader = File.OpenText(path);
@@ -28,6 +28,8 @@ namespace AirChangeTracer.Services
                 var occCat = OccupancyCategoryFactory.Create(row);
                 occList.Add(occCat);
             }
+
+            return occList;
         }
     }
 }
