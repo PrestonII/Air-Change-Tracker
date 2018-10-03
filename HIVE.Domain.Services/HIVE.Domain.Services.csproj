@@ -45,9 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ventilation\CalculationService_2014MC.cs" />
+    <Compile Include="Ventilation\CalculationService_ASHRAE_170.cs" />
+    <Compile Include="Ventilation\CalculationService_ASHRAE_621.cs" />
     <Compile Include="Ventilation\ILookupService.cs" />
     <Compile Include="Ventilation\OccupancyCategoryFactory.cs" />
-    <Compile Include="Ventilation\VentilationCalculationService.cs" />
+    <Compile Include="Ventilation\BaseVentilationCalculationService.cs" />
     <Compile Include="Ventilation\VentilationLookupService.cs" />
   </ItemGroup>
   <ItemGroup>
