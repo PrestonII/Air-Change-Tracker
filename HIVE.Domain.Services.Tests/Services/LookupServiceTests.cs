@@ -1,10 +1,5 @@
 ﻿using NUnit.Framework;
-using AirChangeTracer.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Hive.Domain.Services.Ventilation;
 
@@ -50,6 +45,26 @@ namespace AirChangeTracer.Services.Tests
 
             Assert.IsNotNull(first);
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(0.0, "Art classroom")]
+        [TestCase(2.0, "Autopsy Rooms")]
+        [TestCase(2.0, "Clean Workroom or Holding")]
+        public void ShouldReturnCorrectValueofVentACHForSpaceCategory(double expectedValue, string category)
+        {
+            var actual = _service.GetVentACHBasedOnOccupancyCategory(category);
+
+            Assert.AreEqual(expectedValue, actual);
+        }
+
+        [TestCase(0.0, "Art classroom")]
+        [TestCase(12.0, "Autopsy Rooms")]
+        [TestCase(4.0, "Clean Workroom or Holding")]
+        public void ShouldReturnCorrectValueofSupplyACHForSpaceCategory(double expectedValue, string category)
+        {
+            var actual = _service.GetSupplyACHBasedOnOccupancyCategory(category);
+
+            Assert.AreEqual(expectedValue, actual);
         }
     }
 }

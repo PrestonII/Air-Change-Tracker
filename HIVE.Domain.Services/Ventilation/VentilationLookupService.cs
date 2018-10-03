@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Hive.Domain.Services.Ventilation
 {
-    public class VentilationLookupService
+    public class VentilationLookupService : ILookupService
     {
         public string TypicalDataLocation { get; private set; }
         public Dictionary<string, OccupancyLookup> DefaultDatabase { get; private set; }
@@ -36,6 +36,18 @@ namespace Hive.Domain.Services.Ventilation
             DefaultDatabase = dict;
         }
 
+        public double GetVentACHBasedOnOccupancyCategory(string category)
+        {
+            var lCat = DefaultDatabase[category];
+            return lCat.MechCodeAshrae.VentilationAirChangesPerHour ?? 0.0;
+        }
+
+        public double GetSupplyACHBasedOnOccupancyCategory(string category)
+        {
+            var lCat = DefaultDatabase[category];
+            return lCat.MechCodeAshrae.SupplyAirChangesPerHour ?? 0.0;
+        }
+
         public List<OccupancyLookup> ReadCSVToList(string path = "", int startOfData = 0)
         {
             List<OccupancyLookup> occList = new List<OccupancyLookup>();
@@ -56,5 +68,6 @@ namespace Hive.Domain.Services.Ventilation
 
             return occList;
         }
+
     }
 }

@@ -1,21 +1,30 @@
 ﻿using System;
+using HIVE.Domain.Entities;
 
 namespace Hive.Domain.Services.Ventilation
 {
     public abstract class BaseVentilationCalculationService
     {
         protected const double Time = 60.0;
+        protected ILookupService _lookupService;
 
-        public abstract double CalculateMaxACH();
+        protected BaseVentilationCalculationService(ILookupService service)
+        {
+            _lookupService = service;
+        }
 
+        public abstract double CalculateMaxACH(Space space);
+        public abstract double CalculateCFMBasedOnVentACH(Space space);
     }
 
     public class CalculationService_ASHRAE_170 : BaseVentilationCalculationService
     {
-        public double CalculateCFMBasedOnVentACH(double area, double ceilingHeight, double percentageOutsideAir)
+        public CalculationService_ASHRAE_170(ILookupService service) : base(service) { }
+
+        public double CalculateCFMBasedOnVentACH(double area, double ceilingHeight, double percentageOutsideAir, string category)
         {
             // find ventACH based on lookup
-            double ventACH = 0;
+            double ventACH = _lookupService.GetVentACHBasedOnOccupancyCategory(category);
 
             var temp = (ventACH * area * ceilingHeight) / Time;
 
@@ -24,19 +33,23 @@ namespace Hive.Domain.Services.Ventilation
             return finalCFM; 
         }
 
-        public double CalculateCFMBasedOnSupplyACH()
+        public double CalculateCFMBasedOnSupplyACH(Space space)
         {
             throw new NotImplementedException();
         }
 
         // Next, take the max between the previous two
-        public override double CalculateMaxACH()
+        public override double CalculateMaxACH(Space space)
         {
-            //var ventCFM = CalculateCFMBasedOnVentACH();
-            //var supplyCFM = CalculateCFMBasedOnSupplyACH();
+            var ventCFM = CalculateCFMBasedOnVentACH(space);
+            var supplyCFM = CalculateCFMBasedOnSupplyACH(space);
 
-            //return ventCFM > supplyCFM ? ventCFM : supplyCFM;
-            throw new NotImplementedException();
+            return ventCFM > supplyCFM ? ventCFM : supplyCFM;
+        }
+
+        public override double CalculateCFMBasedOnVentACH(Space space)
+        {
+            return CalculateCFMBasedOnVentACH(space.Area, space.CeilingHeight, space.PercentageOfOutsideAir, space.OccupancyCategory);
         }
     }
 
