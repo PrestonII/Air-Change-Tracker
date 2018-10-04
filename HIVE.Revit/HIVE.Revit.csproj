@@ -53,9 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpacePropertyService.cs" />
+    <Compile Include="Services\RevitElementConversionFactory.cs" />
+    <Compile Include="Services\SpaceConversionFactory.cs" />
+    <Compile Include="Services\SpacePropertyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VentilationResolver.cs" />
+    <Compile Include="VentilationResolutionApp.cs" />
     <Compile Include="VentilationResolverCommand.cs" />
   </ItemGroup>
   <ItemGroup>

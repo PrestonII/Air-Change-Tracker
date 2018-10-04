@@ -18,7 +18,6 @@ namespace AirChangeTracer
         // FindSomeParameter
         public void GetOutsideAirChanges(Space space)
         {
-
         }
     }
 }

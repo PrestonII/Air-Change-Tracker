@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirChangeTracer
 {
-    public class VentilationResolver : IExternalApplication
+    public class VentilationResolutionApp : IExternalApplication
     {
         public Result OnShutdown(UIControlledApplication application)
         {
