@@ -1,13 +1,8 @@
-﻿using Autodesk.Revit.DB.Mechanical;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Autodesk.Revit.DB;
-using Hive.Revit.Services;
+using Autodesk.Revit.DB.Mechanical;
 
-namespace AirChangeTracer
+namespace Hive.Revit.Services
 {
     public class SpacePropertyService
     {

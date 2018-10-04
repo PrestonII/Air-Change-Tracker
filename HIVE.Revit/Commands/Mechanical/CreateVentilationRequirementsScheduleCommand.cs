@@ -10,6 +10,14 @@ namespace Hive.Revit.Commands.Mechanical
     {
         protected override Result Work()
         {
+            // Create Ventilation Schedule
+
+            // Add necessary parameters to model
+
+            // Compare Space Types to lookup table and fill out
+                // ACHR
+                // OAACHR
+
             throw new System.NotImplementedException();
         }
     }

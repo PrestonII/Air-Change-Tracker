@@ -1,7 +1,7 @@
 ﻿using System;
 using Autodesk.Revit.UI;
 
-namespace Hive.Revit
+namespace Hive.Revit.Applications
 {
     public class VentilationResolutionApp : IExternalApplication
     {

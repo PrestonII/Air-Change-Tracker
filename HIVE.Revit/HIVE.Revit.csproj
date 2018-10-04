@@ -55,11 +55,13 @@
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Services\ElementLocationService.cs" />
+    <Compile Include="Services\ParameterCreationService.cs" />
     <Compile Include="Services\RevitElementConversionFactory.cs" />
+    <Compile Include="Services\ScheduleCreationService.cs" />
     <Compile Include="Services\SpaceConversionFactory.cs" />
     <Compile Include="Services\SpacePropertyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VentilationResolutionApp.cs" />
+    <Compile Include="Applications\VentilationResolutionApp.cs" />
     <Compile Include="Commands\Mechanical\CreateVentilationRequirementsScheduleCommand.cs" />
     <Compile Include="Commands\Mechanical\CompareModelAndCodeVentilationCommand.cs" />
   </ItemGroup>
