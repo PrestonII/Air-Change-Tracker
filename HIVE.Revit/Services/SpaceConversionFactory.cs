@@ -12,17 +12,29 @@ namespace Hive.Revit.Services
     {
         public override Space Create(RevitSpace rSpace)
         {
-            throw new NotImplementedException();
+            var space = new Space
+            {
+                Area = rSpace.Area,
+                CFM_Exhaust = rSpace.ActualExhaustAirflow,
+                CFM_Supply = rSpace.ActualSupplyAirflow,
+                CFM_Vent = rSpace.ActualReturnAirflow,
+                NumberOfPeople = rSpace.NumberofPeople,
+                OccupancyCategory = nameof(rSpace.SpaceType)
+                //PercentageOfOutsideAir = null,
+                //CeilingHeight = null
+            };
+
+            return space;
         }
 
         public override Space Create()
         {
-            throw new NotImplementedException();
+            return new Space();
         }
 
         public override Space Create(object obj)
         {
-            throw new NotImplementedException();
+            return Create();
         }
     }
 }
