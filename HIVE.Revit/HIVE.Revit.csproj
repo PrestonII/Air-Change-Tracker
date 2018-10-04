@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\ElementLocationService.cs" />
     <Compile Include="Services\RevitElementConversionFactory.cs" />
     <Compile Include="Services\SpaceConversionFactory.cs" />
     <Compile Include="Services\SpacePropertyService.cs" />
