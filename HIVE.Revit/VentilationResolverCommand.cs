@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,11 @@ namespace AirChangeTracer
     [Regeneration(RegenerationOption.Manual)]
     public class VentilationResolverCommand : IExternalCommand
     {
+        private Space sp;
+
         public Result Execute(
-            ExternalCommandData commandData, 
-            ref string message, 
+            ExternalCommandData commandData,
+            ref string message,
             ElementSet elements)
         {
             TaskDialog.Show("Hello World", "This is the Ventilation Resolver!");

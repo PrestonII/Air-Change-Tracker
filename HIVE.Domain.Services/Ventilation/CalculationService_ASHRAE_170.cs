@@ -33,7 +33,7 @@ namespace Hive.Domain.Services.Ventilation
             return CalculateCFMBasedOnSupplyACH(space.Area, space.CeilingHeight, space.OccupancyCategory);
         }
 
-        public override double CalculateCFMBasedOnVentACH(Space space)
+        public double CalculateCFMBasedOnVentACH(Space space)
         {
             return CalculateCFMBasedOnVentACH(space.Area, space.CeilingHeight, space.PercentageOfOutsideAir, space.OccupancyCategory);
         }

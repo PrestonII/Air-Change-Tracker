@@ -9,16 +9,16 @@ namespace Hive.Domain.Services.Ventilation
 
         public double CalculateExhaustCFMByArea(Space space)
         {
+            // Lookup table Exhaust Reqs * Space.Area
+
             throw new NotImplementedException();
+
         }
 
         public double CalculateExhaustCFMByFixtureCount(Space space)
         {
-            throw new NotImplementedException();
-        }
+            // Lookup table Exhaust Reqs * Space.#OfFixtures
 
-        public override double CalculateCFMBasedOnVentACH(Space space)
-        {
             throw new NotImplementedException();
         }
 
@@ -26,5 +26,12 @@ namespace Hive.Domain.Services.Ventilation
         {
             throw new NotImplementedException();
         }
+
+        /*
+         * Need a few more things
+         *
+         * CFMByArea - Does the current Space Exhaust CFM meet requirements
+         *
+         */
     }
 }

@@ -13,6 +13,5 @@ namespace Hive.Domain.Services.Ventilation
         }
 
         public abstract double CalculateMaxCFMByComparison(Space space);
-        public abstract double CalculateCFMBasedOnVentACH(Space space);
     }
 }

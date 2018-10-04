@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\BaseConversionFactory.cs" />
+    <Compile Include="Factories\BaseFactory.cs" />
+    <Compile Include="Factories\IConversionFactory.cs" />
+    <Compile Include="Factories\IFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ventilation\CalculationService_2014MC.cs" />
     <Compile Include="Ventilation\CalculationService_ASHRAE_170.cs" />
