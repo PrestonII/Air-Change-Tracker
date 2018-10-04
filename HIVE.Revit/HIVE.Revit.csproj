@@ -53,13 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Services\ElementLocationService.cs" />
     <Compile Include="Services\RevitElementConversionFactory.cs" />
     <Compile Include="Services\SpaceConversionFactory.cs" />
     <Compile Include="Services\SpacePropertyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentilationResolutionApp.cs" />
-    <Compile Include="VentilationResolverCommand.cs" />
+    <Compile Include="Commands\Mechanical\CreateVentilationRequirementsScheduleCommand.cs" />
+    <Compile Include="Commands\Mechanical\CompareModelAndCodeVentilationCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="hive.addin">

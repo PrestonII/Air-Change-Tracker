@@ -52,6 +52,7 @@
     <Compile Include="Entities\Ventilation\OccupancyLookup.cs" />
     <Compile Include="Entities\Ventilation\PressureRelationship.cs" />
     <Compile Include="Entities\Ventilation\SI.cs" />
+    <Compile Include="Exceptions\CancellableException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
