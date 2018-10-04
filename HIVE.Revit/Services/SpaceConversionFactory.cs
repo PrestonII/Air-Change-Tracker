@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirChangeTracer;
 using HIVE.Domain.Entities;
 using RevitSpace = Autodesk.Revit.DB.Mechanical.Space;
 
@@ -19,9 +20,9 @@ namespace Hive.Revit.Services
                 CFM_Supply = rSpace.ActualSupplyAirflow,
                 CFM_Vent = rSpace.ActualReturnAirflow,
                 NumberOfPeople = rSpace.NumberofPeople,
-                OccupancyCategory = nameof(rSpace.SpaceType)
+                OccupancyCategory = SpacePropertyService.GetSpaceTypeAsString(rSpace),
+                CeilingHeight = SpacePropertyService.CalculateCeilingHeight(rSpace)
                 //PercentageOfOutsideAir = null,
-                //CeilingHeight = null
             };
 
             return space;
