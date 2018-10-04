@@ -21,8 +21,8 @@ namespace Hive.Revit.Services
                 CFM_Vent = rSpace.ActualReturnAirflow,
                 NumberOfPeople = rSpace.NumberofPeople,
                 OccupancyCategory = SpacePropertyService.GetSpaceTypeAsString(rSpace),
-                CeilingHeight = SpacePropertyService.CalculateCeilingHeight(rSpace)
-                //PercentageOfOutsideAir = null,
+                CeilingHeight = SpacePropertyService.CalculateCeilingHeight(rSpace),
+                PercentageOfOutsideAir = SpacePropertyService.GetOutsideAirFromSpace(rSpace)
             };
 
             return space;

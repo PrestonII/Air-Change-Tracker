@@ -18,6 +18,26 @@ namespace AirChangeTracer
             return name;
         }
 
+        public static double GetOutsideAirFromSpace(Space space)
+        {
+            double oAirPercent = 0.0;
+
+            try
+            {
+                var param = space.ParametersMap.get_Item("Outside Air Percentage");
+
+                if (param != null)
+                    oAirPercent = param.AsDouble();
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine($"This caused an error {e}");
+            }
+
+            return oAirPercent;
+        }
+
         public static double CalculateCeilingHeight(Space space)
         {
             return space?.Volume <= 0 
@@ -53,24 +73,5 @@ namespace AirChangeTracer
             return ceiling;
         }
 
-        public static double GetOutsideAirFromSpace(Space space)
-        {
-            double oAirPercent = 0.0;
-
-            try
-            {
-                var param = space.ParametersMap.get_Item("Outside Air Percentage");
-
-                if (param != null)
-                    oAirPercent = param.AsDouble();
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine($"This caused an error {e}");
-            }
-
-            return oAirPercent;
-        }
     }
 }
