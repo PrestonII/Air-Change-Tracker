@@ -14,18 +14,37 @@ namespace Hive.Revit.Services
         private static readonly string ParameterFileName = "HiveParameters.txt";
         private static readonly string ParameterGroup = "Ventilation";
 
-        public static void AddVentParametersToModel(Document doc)
+        public static DefinitionFile CreateOrGetSharedParameterFile(Document doc)
         {
-            var spaceCat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_MEPSpaces);
             var spFile = doc.Application.OpenSharedParameterFile();
 
             if (spFile != null)
             {
-                spFile = RevitParameterUtility.CreateSharedParameterFile(doc.Application,
+                spFile = RevitParameterUtility
+                    .CreateOrGetSharedParameterFile(doc.Application,
                     Path.GetDirectoryName(doc.PathName).ToString() + ParameterFileName);
             }
 
-            var ventParams = VentilationParameterFactory.CreateVentParameters(spFile);
+            return spFile;
+        }
+
+        public static void AddVentParametersToSchedule(ViewSchedule schedule)
+        {
+            Definition d;
+
+            //var p = schedule.Definition.GetSchedulableFields().First(f => f.ParameterId == d.)
+        }
+
+        /// <summary>
+        /// Adds ventilation parameters necessary for scheduling to the model
+        /// if they do not already exist
+        /// </summary>
+        /// <param name="doc"></param>
+        public static void AddVentParametersToModel(Document doc)
+        {
+            var spaceCat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_MEPSpaces);
+            var spFile = CreateOrGetSharedParameterFile(doc);
+            var ventParams = VentilationParameterFactory.CreateOrGetVentParameters(spFile);
 
             foreach (var p in ventParams)
             {
@@ -34,11 +53,19 @@ namespace Hive.Revit.Services
             }
         }
 
-        public static void CreateOrGetVentilationSchedule(Document doc)
-        {
 
+        public static ViewSchedule CreateOrGetVentilationSchedule(Document doc)
+        {
+            //var spFile = CreateOrGetSharedParameterFile(doc);
+            //var ventParams = VentilationParameterFactory.CreateOrGetVentParameters(spFile);
+
+            return VentilationScheduleFactory.CreateVentilationSchedule(doc);
         }
 
+        /// <summary>
+        /// Gets values of Ventilation Requirement parameters based on Space values
+        /// </summary>
+        /// <param name="spaces"></param>
         public static void GetVentilationRequirements(IEnumerable<Space> spaces)
         {
 

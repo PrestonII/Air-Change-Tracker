@@ -15,13 +15,11 @@ namespace Hive.Revit.Commands.Mechanical
         {
             try
             {
-                // Add necessary parameters to model
-                // add ACHR parameter
-                // add OACHR parameter
-                SpaceVentilationService.AddVentParametersToModel(CurrentDocument);
-
                 // Create Ventilation Schedule
-                SpaceVentilationService.CreateOrGetVentilationSchedule(CurrentDocument);
+                var schedule = SpaceVentilationService.CreateOrGetVentilationSchedule(CurrentDocument);
+
+                // Add VentParameters to Schedule
+                SpaceVentilationService.AddVentParametersToSchedule(schedule);
 
                 // Compare Space Types to lookup table and fill out
                 SpaceVentilationService.GetVentilationRequirements(CurrentDocument);

@@ -8,10 +8,14 @@ namespace Hive.Revit.Services
 {
     public class RevitParameterUtility
     {
-        public static DefinitionFile CreateSharedParameterFile(Application app, string fileName)
+        public static DefinitionFile CreateOrGetSharedParameterFile(Application app, string fileName)
         {
-            var file = File.Create(fileName);
-            file.Close();
+            FileStream file = null;
+
+            if(File.Exists(fileName))
+                file = File.Create(fileName);
+
+            file?.Close();
 
             return AddSharedParameterFileToModel(app, fileName);
         }

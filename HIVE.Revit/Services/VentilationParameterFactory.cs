@@ -13,7 +13,7 @@ namespace Hive.Revit.Services
             get { return "Ventilation"; }
         }
 
-        public static IList<Definition> CreateVentParameters(DefinitionFile file)
+        public static IList<Definition> CreateOrGetVentParameters(DefinitionFile file)
         {
             var list = new List<Definition>();
 
