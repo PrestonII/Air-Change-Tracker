@@ -59,7 +59,7 @@ namespace Hive.Revit.Services
             //var spFile = CreateOrGetSharedParameterFile(doc);
             //var ventParams = VentilationParameterFactory.CreateOrGetVentParameters(spFile);
 
-            return VentilationScheduleFactory.CreateVentilationSchedule(doc);
+            return VentilationScheduleFactory.CreateOrGetVentilationSchedule(doc);
         }
 
         /// <summary>

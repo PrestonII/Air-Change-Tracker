@@ -14,9 +14,23 @@ namespace Hive.Revit.Services
             get { return "Ventilation Schedule"; }
         }
 
-        public static ViewSchedule CreateVentilationSchedule(Document doc)
+        public static ViewSchedule CreateOrGetVentilationSchedule(Document doc)
         {
-            return RevitScheduleFactory.Create(doc, BuiltInCategory.OST_MEPSpaces, ScheduleName);
+            var schedule = GetVentilationSchedule(doc);
+
+            if(schedule == null)
+                schedule = RevitScheduleFactory.Create(doc, BuiltInCategory.OST_MEPSpaces, ScheduleName);
+
+            return schedule;
+        }
+
+        public static ViewSchedule GetVentilationSchedule(Document doc)
+        {
+            var schedule = new FilteredElementCollector(doc)
+                .OfType<ViewSchedule>()
+                .FirstOrDefault(s => s.Name == ScheduleName);
+
+            return schedule;
         }
     }
 }
