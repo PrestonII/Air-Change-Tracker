@@ -53,5 +53,22 @@ namespace Hive.Revit.Services
 
             return binding != null;
         }
+
+        public static bool ModelHasParameter(Document doc, BuiltInCategory category, string parameterName)
+        {
+            var elem = new FilteredElementCollector(doc).OfCategory(category).FirstElement();
+
+            return ModelHasParameter(elem, parameterName);
+        }
+
+        public static bool ModelHasParameter(Element element, string parameterName)
+        {
+            return GetParameterFromElement(element, parameterName) != null;
+        }
+
+        public static Parameter GetParameterFromElement(Element element, string parameterName)
+        {
+            return element.ParametersMap.get_Item(parameterName);
+        }
     }
 }
