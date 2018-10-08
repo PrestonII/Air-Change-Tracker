@@ -30,9 +30,23 @@ namespace Hive.Revit.Services
 
         public static void AddVentParametersToSchedule(ViewSchedule schedule)
         {
-            Definition d;
+            Definition d = null;
+            Parameter p = null;
 
-            //var p = schedule.Definition.GetSchedulableFields().First(f => f.ParameterId == d.)
+            var id = schedule.Definition.
+
+            var matches = schedule.Definition.GetSchedulableFields().Where(f => f.ParameterId == p.Id);
+
+            if (matches.Count() != 1)
+            {
+                // resolve matches
+            }
+
+            //assuming you have no matching parameters
+            //add the parameters to the schedule
+            
+
+            schedule.Definition.AddField(ScheduleFieldType.Space, p.Id);
         }
 
         /// <summary>
@@ -53,7 +67,6 @@ namespace Hive.Revit.Services
             }
         }
 
-
         public static ViewSchedule CreateOrGetVentilationSchedule(Document doc)
         {
             //var spFile = CreateOrGetSharedParameterFile(doc);
@@ -62,23 +75,23 @@ namespace Hive.Revit.Services
             return VentilationScheduleFactory.CreateOrGetVentilationSchedule(doc);
         }
 
-        /// <summary>
-        /// Gets values of Ventilation Requirement parameters based on Space values
-        /// </summary>
-        /// <param name="spaces"></param>
-        public static void GetVentilationRequirements(IEnumerable<Space> spaces)
-        {
-
-        }
-
-        public static void GetVentilationRequirements(Document doc)
+        public static void SetVentilationRequirements(Document doc)
         {
             var spaces = new FilteredElementCollector(doc)
                             .OfClass(typeof(Space))
                             .ToElements()
                             .Cast<Space>();
 
-            GetVentilationRequirements(spaces);
+            ApplyVentRequirementsToSpaces(spaces);
+        }
+
+        /// <summary>
+        /// Gets values of Ventilation Requirement parameters based on Space values
+        /// </summary>
+        /// <param name="spaces"></param>
+        public static void ApplyVentRequirementsToSpaces(IEnumerable<Space> spaces)
+        {
+
         }
     }
 }

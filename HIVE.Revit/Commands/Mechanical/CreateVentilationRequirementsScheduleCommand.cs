@@ -22,7 +22,7 @@ namespace Hive.Revit.Commands.Mechanical
                 SpaceVentilationService.AddVentParametersToSchedule(schedule);
 
                 // Compare Space Types to lookup table and fill out
-                SpaceVentilationService.GetVentilationRequirements(CurrentDocument);
+                SpaceVentilationService.SetVentilationRequirements(CurrentDocument);
             }
 
             catch (CancellableException e)
