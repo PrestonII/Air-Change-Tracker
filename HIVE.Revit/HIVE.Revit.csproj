@@ -66,6 +66,7 @@
     <Compile Include="Commands\Mechanical\CompareModelAndCodeVentilationCommand.cs" />
     <Compile Include="Services\VentilationParameterFactory.cs" />
     <Compile Include="Services\SpaceVentilationService.cs" />
+    <Compile Include="Services\VentilationParameterUtility.cs" />
     <Compile Include="Services\VentilationScheduleFactory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Parameters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\VentParameters.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -13,8 +13,31 @@ namespace Hive.Revit.Services
             get { return "Ventilation"; }
         }
 
-        public static IList<Definition> CreateOrGetVentParameters(DefinitionFile file)
+        public static IList<Parameter> GetVentParameters(Document doc)
         {
+            if (VentilationParameterUtility.ModelHasVentParameters(doc))
+                return VentilationParameterUtility.GetVentParametersFromModel(doc);
+
+            var defs = GetVentParameterDefinitions(doc);
+            var pars = new List<Parameter>();
+
+            foreach (var d in defs)
+            {
+                var p = RevitParameterUtility.GetParameterFromCategory(doc, BuiltInCategory.OST_MEPSpaces, d.Name);
+                pars.Add(p);
+            }
+
+            return pars;
+        }
+
+        /// <summary>
+        /// Gets vent parameter definitions or creates them if they don't exist
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static IList<Definition> GetVentParameterDefinitions(Document doc)
+        {
+            var file = doc.Application.OpenSharedParameterFile();
             var list = new List<Definition>();
 
             var achr = CreateOrGetACHRParameter(file);

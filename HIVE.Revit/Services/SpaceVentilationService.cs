@@ -37,9 +37,9 @@ namespace Hive.Revit.Services
             //assuming you have no matching parameters
             //add the parameters to the schedule
             var file = CreateOrGetSharedParameterFile(schedule.Document);
-            var definitions = VentilationParameterFactory.CreateOrGetVentParameters(file);
+            var definitions = VentilationParameterFactory.GetVentParameterDefinitions(schedule.Document);
 
-            schedule.Definition.AddField(ScheduleFieldType.Space, p.Id);
+            //schedule.Definition.AddField(ScheduleFieldType.Space, p.Id);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Hive.Revit.Services
         {
             var spaceCat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_MEPSpaces);
             var spFile = CreateOrGetSharedParameterFile(doc);
-            var ventParams = VentilationParameterFactory.CreateOrGetVentParameters(spFile);
+            var ventParams = VentilationParameterFactory.GetVentParameterDefinitions(doc);
 
             foreach (var p in ventParams)
             {
