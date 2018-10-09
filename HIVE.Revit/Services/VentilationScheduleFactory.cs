@@ -26,11 +26,19 @@ namespace Hive.Revit.Services
 
         public static ViewSchedule GetVentilationSchedule(Document doc)
         {
-            var schedule = new FilteredElementCollector(doc)
-                .OfType<ViewSchedule>()
-                .FirstOrDefault(s => s.Name == ScheduleName);
+            try
+            {
+                var schedule = new FilteredElementCollector(doc)
+                    .OfType<ViewSchedule>()
+                    .FirstOrDefault(s => s.Name == ScheduleName);
 
-            return schedule;
+                return schedule;
+            }
+
+            catch (Exception e)
+            {
+                return null;
+            }
         }
     }
 }

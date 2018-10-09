@@ -62,9 +62,6 @@ namespace Hive.Revit.Services
 
         public static ViewSchedule CreateOrGetVentilationSchedule(Document doc)
         {
-            //var spFile = CreateOrGetSharedParameterFile(doc);
-            //var ventParams = VentilationParameterFactory.CreateOrGetVentParameters(spFile);
-
             return VentilationScheduleFactory.CreateOrGetVentilationSchedule(doc);
         }
 
