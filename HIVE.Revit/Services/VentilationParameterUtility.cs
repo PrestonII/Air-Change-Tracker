@@ -15,7 +15,7 @@ namespace Hive.Revit.Services
         private static readonly string OAACHR = "OAACHR";
         private static readonly string Pressurization_Required = "REQ_PRESS";
         private static readonly string Pressurization_Model = "REQ_MODEL";
-        private static readonly string ParameterFileName = "VentParameters.txt";
+        private const string ParameterFileName = "VentParameters.txt";
         private static readonly string ParameterGroup = "Ventilation";
         private static string[] VentParameters
         {
@@ -77,9 +77,12 @@ namespace Hive.Revit.Services
 
             if (spFile != null)
             {
+                var buildLocation = Path.GetDirectoryName(typeof(VentilationParameterUtility).Assembly.Location);
+                var dirname = Path.Combine(buildLocation, "Data");
+                var paramFile = Path.Combine(dirname, ParameterFileName);
+
                 spFile = RevitParameterUtility
-                    .CreateOrGetSharedParameterFile(doc.Application,
-                        Path.GetDirectoryName(doc.PathName).ToString() + ParameterFileName);
+                    .CreateOrGetSharedParameterFile(doc.Application, paramFile);
             }
 
             return spFile;

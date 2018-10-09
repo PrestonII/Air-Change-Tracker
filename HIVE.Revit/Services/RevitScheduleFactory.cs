@@ -15,10 +15,16 @@ namespace Hive.Revit.Services
 
             using (var trans = new Transaction(doc, $"Creating new {elementType.GetType().Name} schedule"))
             {
+                var opts = trans.GetFailureHandlingOptions();
+                opts.SetDelayedMiniWarnings(true);
+
+                if (!trans.HasStarted())
+                    trans.Start();
+
                 schedule = ViewSchedule.CreateSchedule(doc, new ElementId(elementType), ElementId.InvalidElementId);
                 schedule.Name = schName;
 
-                trans.Commit();
+                trans.Commit(opts);
             }
 
             return schedule;

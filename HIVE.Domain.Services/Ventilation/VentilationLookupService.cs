@@ -68,6 +68,5 @@ namespace Hive.Domain.Services.Ventilation
 
             return occList;
         }
-
     }
 }
