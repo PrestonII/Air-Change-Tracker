@@ -12,7 +12,7 @@ namespace Hive.Domain.Services.Ventilation
             throw new NotImplementedException();
         }
 
-        public override double CalculateCFMBasedOnVentACH(Space space)
+        public double CalculateCFMBasedOnVentACH(Space space)
         {
             throw new NotImplementedException();
         }
