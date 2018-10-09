@@ -28,36 +28,18 @@ namespace Hive.Revit.Services
             return spFile;
         }
 
-        public static void AddVentParametersToSchedule(ViewSchedule schedule)
-        {
-            GetVentParameters(schedule);
-
-            //assuming you have no matching parameters
-            //add the parameters to the schedule
-            
-
-            schedule.Definition.AddField(ScheduleFieldType.Space, p.Id);
-        }
-
         /// <summary>
         /// Gets the vent parameters necessary or creates them if they are unavailable
         /// </summary>
         /// <param name="schedule"></param>
-        private static void GetVentParameters(ViewSchedule schedule)
+        public static void AddVentParametersToSchedule(ViewSchedule schedule)
         {
+            //assuming you have no matching parameters
+            //add the parameters to the schedule
+            var file = CreateOrGetSharedParameterFile(schedule.Document);
+            var definitions = VentilationParameterFactory.CreateOrGetVentParameters(file);
 
-
-            //Definition d = null;
-            //Parameter p = null;
-
-            //var id = schedule.Definition.
-
-            //var matches = schedule.Definition.GetSchedulableFields().Where(f => f.ParameterId == p.Id);
-
-            //if (matches.Count() != 1)
-            //{
-            //    // resolve matches
-            //}
+            schedule.Definition.AddField(ScheduleFieldType.Space, p.Id);
         }
 
         /// <summary>
