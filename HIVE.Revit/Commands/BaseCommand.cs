@@ -6,6 +6,8 @@ using HIVE.Domain.Exceptions;
 
 namespace Hive.Revit.Commands
 {
+    // If unable to debug commands because Revit dies immediately
+    // http://thebuildingcoder.typepad.com/blog/2013/11/debugging-revit-2014-api-with-visual-studio-2013.html
     public abstract class BaseCommand : IExternalCommand
     {
         protected Stopwatch CommandTimer = new Stopwatch();

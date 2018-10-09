@@ -6,7 +6,6 @@ using HIVE.Domain.Exceptions;
 
 namespace Hive.Revit.Commands.Mechanical
 {
-    // add transaction attributes
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
     public class CreateVentilationRequirementsScheduleCommand : BaseCommand
