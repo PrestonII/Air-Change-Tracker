@@ -50,7 +50,6 @@ namespace Hive.Revit.Services
             var ventParams = VentParameters.Select(p => RevitParameterUtility.GetParameterFromCategory(doc, BuiltInCategory.OST_MEPSpaces, p)).ToList();
 
             return ventParams;
-
         }
 
         /// <summary>
@@ -61,7 +60,8 @@ namespace Hive.Revit.Services
         public static void AddVentParametersToModel(Document doc)
         {
             var spaceCat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_MEPSpaces);
-            var spFile = CreateOrGetSharedParameterFile(doc);
+            var spFile = CreateOrGetSharedParameterFile(doc); // start here again - file already has parameters in shared parameter file now
+
             var ventParams = VentilationParameterFactory.GetVentParameterDefinitions(doc);
 
             foreach (var p in ventParams)
@@ -75,14 +75,13 @@ namespace Hive.Revit.Services
         {
             var spFile = doc.Application.OpenSharedParameterFile();
 
-            if (spFile != null)
+            if (spFile == null)
             {
                 var buildLocation = Path.GetDirectoryName(typeof(VentilationParameterUtility).Assembly.Location);
                 var dirname = Path.Combine(buildLocation, "Data");
                 var paramFile = Path.Combine(dirname, ParameterFileName);
 
-                spFile = RevitParameterUtility
-                    .CreateOrGetSharedParameterFile(doc.Application, paramFile);
+                spFile = RevitParameterUtility.CreateOrGetSharedParameterFile(doc.Application, paramFile);
             }
 
             return spFile;

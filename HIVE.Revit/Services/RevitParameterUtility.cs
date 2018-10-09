@@ -12,7 +12,7 @@ namespace Hive.Revit.Services
         {
             FileStream file = null;
 
-            if(File.Exists(fileName))
+            if(!File.Exists(fileName))
                 file = File.Create(fileName);
 
             file?.Close();
