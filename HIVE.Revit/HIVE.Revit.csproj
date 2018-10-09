@@ -95,7 +95,9 @@
     <Folder Include="Parameters\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\VentParameters.txt" />
+    <None Include="Data\VentParameters.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
