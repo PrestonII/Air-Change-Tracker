@@ -6,9 +6,18 @@ namespace Hive.Revit.Services
 {
     public class SpacePropertyService
     {
-        public static string GetSpaceTypeAsString(Space sp)
+        public static string GetSpaceTypeAsString(Space space)
         {
-            var name = nameof(sp.SpaceType);
+            string name = "";
+
+            try
+            {
+                name = space.Document.GetElement(space.SpaceTypeId).Name;
+            }
+            catch (Exception e)
+            {
+
+            }
 
             return name;
         }
@@ -67,6 +76,5 @@ namespace Hive.Revit.Services
 
             return ceiling;
         }
-
     }
 }

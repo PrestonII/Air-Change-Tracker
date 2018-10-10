@@ -103,6 +103,7 @@ namespace Hive.Revit.Services
                         .FirstOrDefault(f => f.ParameterId == parameter.Id);
 
                     schedule.Definition.AddField(field);
+                    //schedule.Document.Regenerate();
 
                     tr.Commit();
                 }
@@ -116,11 +117,9 @@ namespace Hive.Revit.Services
 
         public static void AddParameterToSchedule(ViewSchedule schedule, params Parameter[] parameters)
         {
-            var fields = schedule.Definition.GetSchedulableFields();
-
             foreach (var p in parameters)
             {
-                if(fields.Any(f => f.ParameterId != p.Id))
+                if(!RevitParameterUtility.ScheduleHasParameter(schedule, p))
                     AddParameterToSchedule(schedule, p);
             }
         }
@@ -132,14 +131,14 @@ namespace Hive.Revit.Services
         /// <returns></returns>
         public static void AssignACHRBasedOnCategory(Space space)
         {
-            var spaceType = nameof(space.SpaceType);
+            var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var achr = VentilationLookupService.GetACHRBasedOnOccupancyCategory(spaceType);
             RevitParameterUtility.SetParameterValue(space, "ACHR", achr.ToString());
         }
 
         public static void AssignOAACHRBasedOnCategory(Space space)
         {
-            var spaceType = nameof(space.SpaceType);
+            var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var oaachr = VentilationLookupService.GetOAACHRBasedOnOccupancyCategory(spaceType);
             RevitParameterUtility.SetParameterValue(space, "OAACHR", oaachr.ToString());
         }

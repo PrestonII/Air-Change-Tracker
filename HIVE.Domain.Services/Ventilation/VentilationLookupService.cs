@@ -39,8 +39,16 @@ namespace Hive.Domain.Services.Ventilation
 
         public static double GetOAACHRBasedOnOccupancyCategory(string category)
         {
-            var lCat = DefaultDatabase[category];
-            return lCat.MechCodeAshrae.VentilationAirChangesPerHour ?? 0.0;
+            try
+            {
+                var lCat = DefaultDatabase[category];
+                return lCat.MechCodeAshrae.VentilationAirChangesPerHour ?? 0.0;
+            }
+
+            catch (Exception e)
+            {
+                return 0.0;
+            }
         }
 
         public static double GetACHRBasedOnOccupancyCategory(string category)
