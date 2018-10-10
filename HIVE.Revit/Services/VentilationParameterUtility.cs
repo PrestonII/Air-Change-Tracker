@@ -38,7 +38,7 @@ namespace Hive.Revit.Services
             return VentParameters.All(p => RevitParameterUtility.ModelHasParameter(doc, BuiltInCategory.OST_MEPSpaces, p));
         }
 
-        internal static IList<Parameter> CreateVentParametersInModel(Document doc)
+        public static IList<Parameter> CreateVentParametersInModel(Document doc)
         {
             AddVentParametersToModel(doc);
 
@@ -93,10 +93,18 @@ namespace Hive.Revit.Services
         {
             try
             {
-                var field = schedule.Definition.GetSchedulableFields()
-                    .FirstOrDefault(f => f.ParameterId == parameter.Id);
+                using (var tr = new Transaction(schedule.Document))
+                {
+                    if (!tr.HasStarted())
+                        tr.Start("Adding parameter to schedule");
 
-                schedule.Definition.AddField(field);
+                    var field = schedule.Definition.GetSchedulableFields()
+                        .FirstOrDefault(f => f.ParameterId == parameter.Id);
+
+                    schedule.Definition.AddField(field);
+
+                    tr.Commit();
+                }
             }
 
             catch (Exception e)
