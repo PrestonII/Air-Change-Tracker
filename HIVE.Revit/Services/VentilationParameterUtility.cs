@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
+using Hive.Domain.Services.Ventilation;
 
 namespace Hive.Revit.Services
 {
@@ -122,6 +123,25 @@ namespace Hive.Revit.Services
                 if(fields.Any(f => f.ParameterId != p.Id))
                     AddParameterToSchedule(schedule, p);
             }
+        }
+
+        /// <summary>
+        /// always SUPPLY
+        /// </summary>
+        /// <param name="space"></param>
+        /// <returns></returns>
+        public static void AssignACHRBasedOnCategory(Space space)
+        {
+            var spaceType = nameof(space.SpaceType);
+            var achr = VentilationLookupService.GetACHRBasedOnOccupancyCategory(spaceType);
+            RevitParameterUtility.SetParameterValue(space, "ACHR", achr.ToString());
+        }
+
+        public static void AssignOAACHRBasedOnCategory(Space space)
+        {
+            var spaceType = nameof(space.SpaceType);
+            var oaachr = VentilationLookupService.GetOAACHRBasedOnOccupancyCategory(spaceType);
+            RevitParameterUtility.SetParameterValue(space, "OAACHR", oaachr.ToString());
         }
     }
 }

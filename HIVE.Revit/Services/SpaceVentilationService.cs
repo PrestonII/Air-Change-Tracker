@@ -52,7 +52,11 @@ namespace Hive.Revit.Services
         /// <param name="spaces"></param>
         public static void ApplyVentRequirementsToSpaces(IEnumerable<Space> spaces)
         {
-
+            foreach (var space in spaces)
+            {
+                VentilationParameterUtility.AssignACHRBasedOnCategory(space);
+                VentilationParameterUtility.AssignOAACHRBasedOnCategory(space);
+            }
         }
     }
 }

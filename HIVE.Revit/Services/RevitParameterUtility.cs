@@ -115,5 +115,29 @@ namespace Hive.Revit.Services
                 return null;
             }
         }
+
+        public static void SetParameterValue(Element elem, string name, string val)
+        {
+            var doc = elem.Document;
+
+            using (var tr = new Transaction(doc))
+            {
+                if (!tr.HasStarted())
+                    tr.Start("Setting parameter value");
+
+                try
+                {
+                    var par = elem.ParametersMap.get_Item(name);
+                    par.Set(val);
+
+                    tr.Commit();
+                }
+
+                catch (Exception e)
+                {
+                    tr.RollBack();
+                }
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Hive.Domain.Services.Ventilation
         private double CalculateCFMBasedOnVentACH(double area, double ceilingHeight, double percentageOutsideAir, string category)
         {
             // find ventACH based on lookup
-            double ventACH = _lookupService.GetVentACHBasedOnOccupancyCategory(category);
+            double ventACH = _lookupService.GetOAACHRBasedOnOccupancyCategory(category);
 
             var temp = (ventACH * area * ceilingHeight) / Time;
 
@@ -21,7 +21,7 @@ namespace Hive.Domain.Services.Ventilation
 
         private double CalculateCFMBasedOnSupplyACH(double area, double ceilingHeight, string category)
         {
-            var supplyACH = _lookupService.GetSupplyACHBasedOnOccupancyCategory(category);
+            var supplyACH = _lookupService.GetACHRBasedOnOccupancyCategory(category);
 
             var cfm = (supplyACH * area * ceilingHeight) / Time;
 
@@ -39,12 +39,12 @@ namespace Hive.Domain.Services.Ventilation
         }
 
         // Next, take the max between the previous two
-        public override double CalculateMaxCFMByComparison(Space space)
-        {
-            var ventCFM = CalculateCFMBasedOnVentACH(space);
-            var supplyCFM = CalculateCFMBasedOnSupplyACH(space);
+        //public override double CalculateMaxCFMByComparison(Space space)
+        //{
+        //    var ventCFM = CalculateCFMBasedOnVentACH(space);
+        //    var supplyCFM = CalculateCFMBasedOnSupplyACH(space);
 
-            return ventCFM > supplyCFM ? ventCFM : supplyCFM;
-        }
+        //    return ventCFM > supplyCFM ? ventCFM : supplyCFM;
+        //}
     }
 }

@@ -5,30 +5,30 @@ using System.IO;
 
 namespace Hive.Domain.Services.Ventilation
 {
-    public class VentilationLookupService : ILookupService
+    public class VentilationLookupService
     {
-        public string TypicalDataLocation { get; private set; }
-        public Dictionary<string, OccupancyLookup> DefaultDatabase { get; private set; }
+        public static string TypicalDataLocation { get; private set; }
+        public static Dictionary<string, OccupancyLookup> DefaultDatabase { get; private set; }
 
-        public VentilationLookupService()
+        static VentilationLookupService()
         {
             Initialize();
         }
 
-        private void Initialize()
+        private static void Initialize()
         {
             ReadDataFile();
             SeedDefaultDatabase();
         }
 
-        public void ReadDataFile()
+        public static void ReadDataFile()
         {
-            var buildLocation = Path.GetDirectoryName(GetType().Assembly.Location);
+            var buildLocation = Path.GetDirectoryName(typeof(VentilationLookupService).Assembly.Location);
             var dirname = Path.Combine(buildLocation, "Data");
             TypicalDataLocation = Path.Combine(dirname, "Lookup_VentilationTable.csv");
         }
 
-        private void SeedDefaultDatabase()
+        private static void SeedDefaultDatabase()
         {
             var seed = ReadCSVToList(TypicalDataLocation, 4);
             var dict = new Dictionary<string, OccupancyLookup>();
@@ -36,19 +36,19 @@ namespace Hive.Domain.Services.Ventilation
             DefaultDatabase = dict;
         }
 
-        public double GetVentACHBasedOnOccupancyCategory(string category)
+        public static double GetOAACHRBasedOnOccupancyCategory(string category)
         {
             var lCat = DefaultDatabase[category];
             return lCat.MechCodeAshrae.VentilationAirChangesPerHour ?? 0.0;
         }
 
-        public double GetSupplyACHBasedOnOccupancyCategory(string category)
+        public static double GetACHRBasedOnOccupancyCategory(string category)
         {
             var lCat = DefaultDatabase[category];
             return lCat.MechCodeAshrae.SupplyAirChangesPerHour ?? 0.0;
         }
 
-        public List<OccupancyLookup> ReadCSVToList(string path = "", int startOfData = 0)
+        public static List<OccupancyLookup> ReadCSVToList(string path = "", int startOfData = 0)
         {
             List<OccupancyLookup> occList = new List<OccupancyLookup>();
             path = path == "" ? TypicalDataLocation : path;

@@ -4,7 +4,7 @@ namespace Hive.Domain.Services.Ventilation
 {
     public interface ILookupService
     {
-        double GetVentACHBasedOnOccupancyCategory(string category);
-        double GetSupplyACHBasedOnOccupancyCategory(string category);
+        double GetOAACHRBasedOnOccupancyCategory(string category);
+        double GetACHRBasedOnOccupancyCategory(string category);
     }
 }

@@ -52,7 +52,7 @@ namespace AirChangeTracer.Services.Tests
         [TestCase(2.0, "Clean Workroom or Holding")]
         public void ShouldReturnCorrectValueofVentACHForSpaceCategory(double expectedValue, string category)
         {
-            var actual = _service.GetVentACHBasedOnOccupancyCategory(category);
+            var actual = _service.GetOAACHRBasedOnOccupancyCategory(category);
 
             Assert.AreEqual(expectedValue, actual);
         }
@@ -62,7 +62,7 @@ namespace AirChangeTracer.Services.Tests
         [TestCase(4.0, "Clean Workroom or Holding")]
         public void ShouldReturnCorrectValueofSupplyACHForSpaceCategory(double expectedValue, string category)
         {
-            var actual = _service.GetSupplyACHBasedOnOccupancyCategory(category);
+            var actual = _service.GetACHRBasedOnOccupancyCategory(category);
 
             Assert.AreEqual(expectedValue, actual);
         }
