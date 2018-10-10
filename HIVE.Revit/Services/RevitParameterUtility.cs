@@ -46,13 +46,27 @@ namespace Hive.Revit.Services
 
         public static void BindParameterToCategory(Document doc, Category category, Definition parameter)
         {
-            var categories = doc.Application.Create.NewCategorySet();
-            categories.Insert(category);
-            var binding = doc.Application.Create.NewInstanceBinding(categories);
-            var failed = !doc.ParameterBindings.Insert(parameter, binding);
+            try
+            {
+                var categories = doc.Application.Create.NewCategorySet();
+                categories.Insert(category);
+                var binding = doc.Application.Create.NewInstanceBinding(categories);
+                using (var tr = new Transaction(doc))
+                {
+                    if (!tr.HasStarted())
+                        tr.Start("Inserting parameter");
 
-            if(failed)
-                throw new Exception("The requested binding could not be completed");
+                    doc.ParameterBindings.Insert(parameter, binding);
+
+                    tr.Commit();
+                }
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception("The requested binding could not be completed", e);
+            }
+
         }
 
         public static bool ModelHasParameter(Document doc, Definition parameter)
