@@ -39,7 +39,6 @@ namespace Hive.Revit.Services
         {
             var file = doc.Application.OpenSharedParameterFile();
             var list = new List<Definition>();
-
             var achr = CreateOrGetACHRParameter(file);
             var achm = CreateOrGetACHMParameter(file);
             var oaachr = CreateOrGetOAACHRParameter(file);
@@ -59,38 +58,86 @@ namespace Hive.Revit.Services
 
         public static Definition CreateOrGetACHRParameter(DefinitionFile file)
         {
+            Definition achr = null;
             var group = RevitParameterUtility.CreateOrGetGroupInSharedParameterFile(file, VentilationGroupName);
+
+            try
+            {
+                achr = group.Definitions.get_Item("ACHR");
+            }
+
+            catch (Exception e)
+            {
+
+            }
+
             var opts = new ExternalDefinitionCreationOptions("ACHR", ParameterType.Number);
-            var achr = group.Definitions.Create(opts);
+            achr = achr ?? group.Definitions.Create(opts);
 
             return achr;
         }
 
         public static Definition CreateOrGetACHMParameter(DefinitionFile file)
         {
+            Definition achm = null;
             var group = RevitParameterUtility.CreateOrGetGroupInSharedParameterFile(file, VentilationGroupName);
-            var opts = new ExternalDefinitionCreationOptions("ACHM", ParameterType.Number);
-            var achr = group.Definitions.Create(opts);
 
-            return achr;
+            try
+            {
+                achm = group.Definitions.get_Item("ACHM");
+            }
+
+            catch (Exception e)
+            {
+
+            }
+
+            var opts = new ExternalDefinitionCreationOptions("ACHM", ParameterType.Number);
+            achm = achm ?? group.Definitions.Create(opts);
+
+            return achm;
         }
 
         public static Definition CreateOrGetOAACHRParameter(DefinitionFile file)
         {
+            Definition oaachr = null;
             var group = RevitParameterUtility.CreateOrGetGroupInSharedParameterFile(file, VentilationGroupName);
-            var opts = new ExternalDefinitionCreationOptions("OAACHR", ParameterType.Number);
-            var achr = group.Definitions.Create(opts);
 
-            return achr;
+            try
+            {
+                oaachr = group.Definitions.get_Item("oaachr");
+            }
+
+            catch (Exception e)
+            {
+
+            }
+
+            var opts = new ExternalDefinitionCreationOptions("oaachr", ParameterType.Number);
+            oaachr = oaachr ?? group.Definitions.Create(opts);
+
+            return oaachr;
         }
 
         public static Definition CreateOrGetOAACHMParameter(DefinitionFile file)
         {
+            Definition oaachm = null;
             var group = RevitParameterUtility.CreateOrGetGroupInSharedParameterFile(file, VentilationGroupName);
-            var opts = new ExternalDefinitionCreationOptions("OAACHM", ParameterType.Number);
-            var achr = group.Definitions.Create(opts);
 
-            return achr;
+            try
+            {
+                oaachm = group.Definitions.get_Item("oaachm");
+            }
+
+            catch (Exception e)
+            {
+
+            }
+
+            var opts = new ExternalDefinitionCreationOptions("oaachm", ParameterType.Number);
+            oaachm = oaachm ?? group.Definitions.Create(opts);
+
+            return oaachm;
         }
     }
 }

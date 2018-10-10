@@ -30,7 +30,15 @@ namespace Hive.Revit.Services
 
         public static DefinitionGroup CreateOrGetGroupInSharedParameterFile(DefinitionFile file, string groupName)
         {
-            var group = file.Groups.get_Item(groupName);
+            DefinitionGroup group = null;
+
+            try
+            {
+                group = file.Groups.get_Item(groupName);
+            }
+
+            catch(Exception e) { }
+
             group = group ?? file.Groups.Create(groupName);
 
             return group;
