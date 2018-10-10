@@ -109,7 +109,7 @@ namespace Hive.Revit.Services
 
             catch (Exception e)
             {
-                throw new Exception("Could not add parameter to schedule", e);
+                //throw new Exception("Could not add parameter to schedule", e);
             }
         }
 

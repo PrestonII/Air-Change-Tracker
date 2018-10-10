@@ -74,6 +74,7 @@ namespace Hive.Revit.Services
             var opts = new ExternalDefinitionCreationOptions("ACHR", ParameterType.Number);
             achr = achr ?? group.Definitions.Create(opts);
 
+
             return achr;
         }
 
@@ -105,7 +106,7 @@ namespace Hive.Revit.Services
 
             try
             {
-                oaachr = group.Definitions.get_Item("oaachr");
+                oaachr = group.Definitions.get_Item("OAACHR");
             }
 
             catch (Exception e)
@@ -113,7 +114,7 @@ namespace Hive.Revit.Services
 
             }
 
-            var opts = new ExternalDefinitionCreationOptions("oaachr", ParameterType.Number);
+            var opts = new ExternalDefinitionCreationOptions("OAACHR", ParameterType.Number);
             oaachr = oaachr ?? group.Definitions.Create(opts);
 
             return oaachr;
@@ -126,7 +127,7 @@ namespace Hive.Revit.Services
 
             try
             {
-                oaachm = group.Definitions.get_Item("oaachm");
+                oaachm = group.Definitions.get_Item("OAACHM");
             }
 
             catch (Exception e)
@@ -134,7 +135,7 @@ namespace Hive.Revit.Services
 
             }
 
-            var opts = new ExternalDefinitionCreationOptions("oaachm", ParameterType.Number);
+            var opts = new ExternalDefinitionCreationOptions("OAACHM", ParameterType.Number);
             oaachm = oaachm ?? group.Definitions.Create(opts);
 
             return oaachm;
