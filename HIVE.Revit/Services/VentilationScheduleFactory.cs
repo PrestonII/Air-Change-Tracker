@@ -29,7 +29,8 @@ namespace Hive.Revit.Services
             try
             {
                 var schedule = new FilteredElementCollector(doc)
-                    .OfType<ViewSchedule>()
+                    .OfClass(typeof(ViewSchedule))
+                    .Cast<ViewSchedule>()
                     .FirstOrDefault(s => s.Name == ScheduleName);
 
                 return schedule;

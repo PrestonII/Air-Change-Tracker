@@ -26,7 +26,9 @@ namespace Hive.Revit.Services
                 : VentilationParameterUtility.CreateVentParametersInModel(schedule.Document);
 
             // add them to the schedule as schedulable fields
-            VentilationParameterUtility.AddParameterToSchedule(schedule, ventParams.ToArray());
+            var fields = schedule.Definition.GetSchedulableFields();
+            if(ventParams.Any(p => fields.All(f => f.ParameterId != p.Id)))
+                VentilationParameterUtility.AddParameterToSchedule(schedule, ventParams.ToArray());
         }
 
         public static ViewSchedule CreateOrGetVentilationSchedule(Document doc)

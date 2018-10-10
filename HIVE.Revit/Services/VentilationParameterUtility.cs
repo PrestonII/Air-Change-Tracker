@@ -115,9 +115,12 @@ namespace Hive.Revit.Services
 
         public static void AddParameterToSchedule(ViewSchedule schedule, params Parameter[] parameters)
         {
+            var fields = schedule.Definition.GetSchedulableFields();
+
             foreach (var p in parameters)
             {
-                AddParameterToSchedule(schedule, p);
+                if(fields.Any(f => f.ParameterId != p.Id))
+                    AddParameterToSchedule(schedule, p);
             }
         }
     }
