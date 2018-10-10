@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using HIVE.Domain.Entities.Ventilation;
+using System;
 using System.Collections.Generic;
 using System.IO; 
 
@@ -44,8 +45,16 @@ namespace Hive.Domain.Services.Ventilation
 
         public static double GetACHRBasedOnOccupancyCategory(string category)
         {
-            var lCat = DefaultDatabase[category];
-            return lCat.MechCodeAshrae.SupplyAirChangesPerHour ?? 0.0;
+            try
+            {
+                var lCat = DefaultDatabase[category];
+                return lCat.MechCodeAshrae.SupplyAirChangesPerHour ?? 0.0;
+            }
+
+            catch (Exception e)
+            {
+                return 0.0;
+            }
         }
 
         public static List<OccupancyLookup> ReadCSVToList(string path = "", int startOfData = 0)

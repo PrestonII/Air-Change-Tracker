@@ -39,8 +39,9 @@ namespace Hive.Revit.Services
         public static void SetVentilationRequirements(Document doc)
         {
             var spaces = new FilteredElementCollector(doc)
-                            .OfClass(typeof(Space))
+                            .OfClass(typeof(SpatialElement))
                             .ToElements()
+                            .Where(s => s is Space)
                             .Cast<Space>();
 
             ApplyVentRequirementsToSpaces(spaces);
