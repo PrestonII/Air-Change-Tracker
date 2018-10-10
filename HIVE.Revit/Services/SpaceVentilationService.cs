@@ -47,7 +47,7 @@ namespace Hive.Revit.Services
         }
 
         /// <summary>
-        /// Gets values of Ventilation Requirement parameters based on Space values
+        /// Gets values of Ventilation Requirement parameters from a lookup tables based on Space values
         /// </summary>
         /// <param name="spaces"></param>
         public static void ApplyVentRequirementsToSpaces(IEnumerable<Space> spaces)

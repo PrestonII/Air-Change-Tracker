@@ -22,10 +22,10 @@ namespace Hive.Domain.Services.Ventilation
             throw new NotImplementedException();
         }
 
-        public override double CalculateMaxCFMByComparison(Space space)
-        {
-            throw new NotImplementedException();
-        }
+        //public override double CalculateMaxCFMByComparison(Space space)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         /*
          * Need a few more things

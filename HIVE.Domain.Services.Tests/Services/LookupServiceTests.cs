@@ -8,18 +8,18 @@ namespace AirChangeTracer.Services.Tests
     [TestFixture()]
     public class LookupServiceTests
     {
-        private VentilationLookupService _service;
+        private VentilationLookupService VentilationLookupService;
 
         [SetUp]
         public void Initialize()
         {
-            _service = new VentilationLookupService();
+            //VentilationLookupService = new VentilationLookupService();
         }
 
         [Test]
         public void ShouldBeAbleToFindDataFile()
         {
-            var path = _service.TypicalDataLocation;
+            var path = VentilationLookupService.TypicalDataLocation;
 
             Assert.IsNotNull(path);
             Assert.IsTrue(path.Contains("Lookup_VentilationTable.csv"));
@@ -29,7 +29,7 @@ namespace AirChangeTracer.Services.Tests
         [Test]
         public void ShouldBeAbleToReadCSVToListOfOccupancyObjects()
         {
-            var list = _service.ReadCSVToList(startOfData: 4);
+            var list = VentilationLookupService.ReadCSVToList(startOfData: 4);
 
             Assert.IsNotEmpty(list);
         }
@@ -37,7 +37,7 @@ namespace AirChangeTracer.Services.Tests
         [Test]
         public void ShouldHave_AllIsolationAnteRoom_AsFirstCategory()
         {
-            var list = _service.ReadCSVToList( startOfData: 4);
+            var list = VentilationLookupService.ReadCSVToList( startOfData: 4);
 
             var first = list.First();
             var expected = "AII - Isolation Anteroom";
@@ -52,7 +52,7 @@ namespace AirChangeTracer.Services.Tests
         [TestCase(2.0, "Clean Workroom or Holding")]
         public void ShouldReturnCorrectValueofVentACHForSpaceCategory(double expectedValue, string category)
         {
-            var actual = _service.GetOAACHRBasedOnOccupancyCategory(category);
+            var actual = VentilationLookupService.GetOAACHRBasedOnOccupancyCategory(category);
 
             Assert.AreEqual(expectedValue, actual);
         }
@@ -62,7 +62,7 @@ namespace AirChangeTracer.Services.Tests
         [TestCase(4.0, "Clean Workroom or Holding")]
         public void ShouldReturnCorrectValueofSupplyACHForSpaceCategory(double expectedValue, string category)
         {
-            var actual = _service.GetACHRBasedOnOccupancyCategory(category);
+            var actual = VentilationLookupService.GetACHRBasedOnOccupancyCategory(category);
 
             Assert.AreEqual(expectedValue, actual);
         }
