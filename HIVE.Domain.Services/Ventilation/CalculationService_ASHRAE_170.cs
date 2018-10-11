@@ -1,26 +1,14 @@
-﻿using System;
-using HIVE.Domain.Entities;
-
-namespace Hive.Domain.Services.Ventilation
+﻿namespace Hive.Domain.Services.Ventilation
 {
     public class CalculationService_ASHRAE_170 : BaseVentilationCalculationService
     {
         public CalculationService_ASHRAE_170(ILookupService service) : base(service) { }
 
-        public double CalculateCFMBasedOnSupplyACH(Space space)
-        {
-            return CalculateCFMBasedOnSupplyACH(space.Area, space.CeilingHeight, space.OccupancyCategory);
-        }
-
-        public double CalculateCFMBasedOnVentACH(Space space)
-        {
-            return CalculateCFMBasedOnVentACH(space.Area, space.CeilingHeight, space.PercentageOfOutsideAir, space.OccupancyCategory);
-        }
-
-        private double CalculateCFMBasedOnVentACH(double area, double ceilingHeight, double percentageOutsideAir, string category)
+        public static double CalculateCFMBasedOnVentACH(double area, double ceilingHeight, double percentageOutsideAir, string category)
         {
             // find ventACH based on lookup
-            double ventACH = _lookupService.GetOAACHRBasedOnOccupancyCategory(category);
+            //double ventACH = _lookupService.GetOAACHRBasedOnOccupancyCategory(category);
+            double ventACH = VentilationLookupService.GetOAACHRBasedOnOccupancyCategory(category);
 
             var temp = (ventACH * area * ceilingHeight) / Time;
 
@@ -29,9 +17,9 @@ namespace Hive.Domain.Services.Ventilation
             return finalCFM; 
         }
 
-        private double CalculateCFMBasedOnSupplyACH(double area, double ceilingHeight, string category)
+        public static double CalculateCFMBasedOnSupplyACH(double area, double ceilingHeight, string category)
         {
-            var supplyACH = _lookupService.GetACHRBasedOnOccupancyCategory(category);
+            var supplyACH = VentilationLookupService.GetACHRBasedOnOccupancyCategory(category);
 
             var cfm = (supplyACH * area * ceilingHeight) / Time;
 

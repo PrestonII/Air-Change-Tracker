@@ -136,11 +136,33 @@ namespace Hive.Revit.Services
             RevitParameterUtility.SetParameterValue(space, "ACHR", achr.ToString());
         }
 
+        /// <summary>
+        /// Always VENT
+        /// </summary>
+        /// <param name="space"></param>
         public static void AssignOAACHRBasedOnCategory(Space space)
         {
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var oaachr = VentilationLookupService.GetOAACHRBasedOnOccupancyCategory(spaceType);
             RevitParameterUtility.SetParameterValue(space, "OAACHR", oaachr.ToString());
+        }
+
+        public static void AssignACHMBasedOnCategory(Space space)
+        {
+            var factory = new SpaceConversionFactory();
+            var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
+            var dSpace = factory.Create(space);
+            var achm = VentilationCalculationService.CalculateCFMBasedOnSupplyACH(dSpace);
+            RevitParameterUtility.SetParameterValue(space, "ACHM", achm.ToString());
+        }
+
+        public static void AssignOAACHMBasedOnCategory(Space space)
+        {
+            var factory = new SpaceConversionFactory();
+            var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
+            var dSpace = factory.Create(space);
+            var oaachm = VentilationCalculationService.CalculateCFMBasedOnSupplyACH(dSpace);
+            RevitParameterUtility.SetParameterValue(space, "OAACHM", oaachm.ToString());
         }
     }
 }
