@@ -1,4 +1,5 @@
 ﻿using HIVE.Domain.Entities;
+using System;
 
 namespace Hive.Domain.Services.Ventilation
 {
@@ -19,6 +20,14 @@ namespace Hive.Domain.Services.Ventilation
                 space.CeilingHeight, 
                 space.PercentageOfOutsideAir, 
                 space.OccupancyCategory);
+        }
+
+        public static double CalculateModeledPressurization(Space space)
+        {
+            var negativePressure = Math.Abs(space.CFM_Exhaust) + Math.Abs(space.CFM_Vent);
+            var pressure = space.CFM_Supply - negativePressure;
+
+            return pressure;
         }
     }
 }

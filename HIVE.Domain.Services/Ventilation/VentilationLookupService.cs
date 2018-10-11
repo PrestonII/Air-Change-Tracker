@@ -65,6 +65,26 @@ namespace Hive.Domain.Services.Ventilation
             }
         }
 
+        public static int GetRequirePressurizationBasedOnOccupancy(string category)
+        {
+            try
+            {
+                var lCat = DefaultDatabase[category];
+                var pressure = lCat.MechCodeAshrae.PressureRelationship;
+
+                return pressure == PressureRelationship.None || pressure == PressureRelationship.Unknown
+                    ? 0
+                    : pressure == PressureRelationship.Negative 
+                        ? -1 
+                        : 1;
+            }
+
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         public static List<OccupancyLookup> ReadCSVToList(string path = "", int startOfData = 0)
         {
             List<OccupancyLookup> occList = new List<OccupancyLookup>();

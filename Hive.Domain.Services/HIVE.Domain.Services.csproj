@@ -55,6 +55,7 @@
     <Compile Include="Ventilation\ILookupService.cs" />
     <Compile Include="Ventilation\OccupancyCategoryFactory.cs" />
     <Compile Include="Ventilation\BaseVentilationCalculationService.cs" />
+    <Compile Include="Ventilation\VentilationCalculationService.cs" />
     <Compile Include="Ventilation\VentilationLookupService.cs" />
   </ItemGroup>
   <ItemGroup>

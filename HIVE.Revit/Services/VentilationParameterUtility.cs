@@ -14,8 +14,8 @@ namespace Hive.Revit.Services
         private static readonly string ACHR = "ACHR";
         private static readonly string OAACHM = "OAACHM";
         private static readonly string OAACHR = "OAACHR";
-        private static readonly string Pressurization_Required = "REQ_PRESS";
-        private static readonly string Pressurization_Model = "REQ_MODEL";
+        private static readonly string Pressurization_Required = "PRESSURIZATION_REQ";
+        private static readonly string Pressurization_Model = "PRESSURIZATION_MOD";
         private const string ParameterFileName = "VentParameters.txt";
         private static readonly string ParameterGroup = "Ventilation";
         private static string[] VentParameters
@@ -28,8 +28,8 @@ namespace Hive.Revit.Services
                     ACHR,
                     OAACHM,
                     OAACHR,
-                    //Pressurization_Required,
-                    //Pressurization_Model,
+                    Pressurization_Required,
+                    Pressurization_Model,
                 };
             }
         }
@@ -163,6 +163,22 @@ namespace Hive.Revit.Services
             var dSpace = factory.Create(space);
             var oaachm = VentilationCalculationService.CalculateCFMBasedOnSupplyACH(dSpace);
             RevitParameterUtility.SetParameterValue(space, "OAACHM", oaachm.ToString());
+        }
+
+        public static void AssignRequiredPressurization(Space space)
+        {
+            var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
+            var press = VentilationLookupService.GetRequirePressurizationBasedOnOccupancy(spaceType);
+            RevitParameterUtility.SetParameterValue(space, "PRESSURIZATION_REQ", press.ToString());
+        }
+
+        public static void AssignModeledPressurization(Space space)
+        {
+            var factory = new SpaceConversionFactory();
+            var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
+            var dSpace = factory.Create(space);
+            var press = VentilationCalculationService.CalculateModeledPressurization(dSpace);
+            RevitParameterUtility.SetParameterValue(space, "PRESSURIZATION_MOD", press.ToString());
         }
     }
 }

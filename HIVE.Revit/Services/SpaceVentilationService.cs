@@ -34,15 +34,6 @@ namespace Hive.Revit.Services
             return VentilationScheduleFactory.CreateOrGetVentilationSchedule(doc);
         }
 
-        public static void CalculateCurrentCFMForSpaces(IEnumerable<Space> spaces)
-        {
-            foreach (var space in spaces)
-            {
-                VentilationParameterUtility.AssignACHMBasedOnCategory(space);
-                VentilationParameterUtility.AssignOAACHMBasedOnCategory(space);
-            }
-        }
-
         public static void SetVentilationParameters(Document doc)
         {
             var spaces = new FilteredElementCollector(doc)
@@ -56,6 +47,8 @@ namespace Hive.Revit.Services
 
             // Evaluate Model based CFM stuff
             CalculateCurrentCFMForSpaces(spaces);
+
+            CalculatePressurizationForSpaces(spaces);
         }
 
         /// <summary>
@@ -68,6 +61,24 @@ namespace Hive.Revit.Services
             {
                 VentilationParameterUtility.AssignACHRBasedOnCategory(space);
                 VentilationParameterUtility.AssignOAACHRBasedOnCategory(space);
+            }
+        }
+
+        public static void CalculateCurrentCFMForSpaces(IEnumerable<Space> spaces)
+        {
+            foreach (var space in spaces)
+            {
+                VentilationParameterUtility.AssignACHMBasedOnCategory(space);
+                VentilationParameterUtility.AssignOAACHMBasedOnCategory(space);
+            }
+        }
+
+        public static void CalculatePressurizationForSpaces(IEnumerable<Space> spaces)
+        {
+            foreach (var space in spaces)
+            {
+                VentilationParameterUtility.AssignRequiredPressurization(space);
+                VentilationParameterUtility.AssignModeledPressurization(space);
             }
         }
     }

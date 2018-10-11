@@ -43,12 +43,12 @@ namespace Hive.Revit.Services
             var achm = CreateOrGetACHMParameter(file);
             var oaachr = CreateOrGetOAACHRParameter(file);
             var oaachm = CreateOrGetOAACHMParameter(file);
-            // add Pressurization Required parameter (calculated formula parameter)
-            // add Pressurization Current parameter (calculated formula parameter)
+            var pReq = CreateOrGetPressureRequiredParameter(file);
+            var pMod = CreateOrGetPressureModelParameter(file);
 
             var vents = new Definition[]
             {
-                achr, achm, oaachr, oaachm
+                achr, achm, oaachr, oaachm, pReq, pMod
             };
 
             list.AddRange(vents);
@@ -139,6 +139,48 @@ namespace Hive.Revit.Services
             oaachm = oaachm ?? group.Definitions.Create(opts);
 
             return oaachm;
+        }
+
+        public static Definition CreateOrGetPressureModelParameter(DefinitionFile file)
+        {
+            Definition press_mod = null;
+            var group = RevitParameterUtility.CreateOrGetGroupInSharedParameterFile(file, VentilationGroupName);
+
+            try
+            {
+                press_mod = group.Definitions.get_Item("PRESSURIZATION_MOD");
+            }
+
+            catch (Exception e)
+            {
+
+            }
+
+            var opts = new ExternalDefinitionCreationOptions("PRESSURIZATION_MOD", ParameterType.Number);
+            press_mod = press_mod ?? group.Definitions.Create(opts);
+
+            return press_mod;
+        }
+
+        public static Definition CreateOrGetPressureRequiredParameter(DefinitionFile file)
+        {
+            Definition press_req = null;
+            var group = RevitParameterUtility.CreateOrGetGroupInSharedParameterFile(file, VentilationGroupName);
+
+            try
+            {
+                press_req = group.Definitions.get_Item("PRESSURIZATION_REQ");
+            }
+
+            catch (Exception e)
+            {
+
+            }
+
+            var opts = new ExternalDefinitionCreationOptions("PRESSURIZATION_REQ", ParameterType.Integer);
+            press_req = press_req ?? group.Definitions.Create(opts);
+
+            return press_req;
         }
     }
 }
