@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RevitAddIns>
   <AddIn Type="Command">
-    <Name>Create Vent Schedule</Name>
+    <Text>Create Vent Schedule</Text>
+    <Description>Creates a ventilation schedule based on the required Mechanical Codes</Description>
     <Assembly>Hive.Revit.dll</Assembly>
     <FullClassName>Hive.Revit.Commands.Mechanical.CreateVentilationRequirementsScheduleCommand</FullClassName>
     <ClientId>ff4750d5-8060-41f9-8804-b1f587031655</ClientId>
