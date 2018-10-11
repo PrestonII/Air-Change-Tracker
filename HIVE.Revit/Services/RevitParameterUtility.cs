@@ -128,7 +128,8 @@ namespace Hive.Revit.Services
                 try
                 {
                     var par = elem.ParametersMap.get_Item(name);
-                    par.Set(val);
+
+                    SetParameterBasedOnType(par, val);
 
                     tr.Commit();
                 }
@@ -137,6 +138,27 @@ namespace Hive.Revit.Services
                 {
                     tr.RollBack();
                 }
+            }
+        }
+
+        private static void SetParameterBasedOnType(Parameter par, string val)
+        {
+            var kind = par.StorageType;
+
+            switch (kind)
+            {
+                case StorageType.Double:
+                    var pVal = double.Parse(val);
+                    par.Set(pVal);
+                    break;
+                case StorageType.Integer:
+                    par.Set(int.Parse(val));
+                    break;
+                default:
+                case StorageType.None:
+                case StorageType.String:
+                    par.Set(val);
+                    break;
             }
         }
 
