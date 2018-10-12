@@ -1,9 +1,10 @@
-﻿using HIVE.Domain.Entities;
+﻿using Hive.Revit.Services;
+using HIVE.Domain.Entities;
 using RevitSpace = Autodesk.Revit.DB.Mechanical.Space;
 
-namespace Hive.Revit.Services
+namespace Hive.Revit.Factory
 {
-    public class SpaceConversionFactory : RevitElementConversionFactory<Space, RevitSpace >
+    public class SpaceConversionFactory : RevitConversionFactory<Space, RevitSpace >
     {
         public override Space Create(RevitSpace rSpace)
         {

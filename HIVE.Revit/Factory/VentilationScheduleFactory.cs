@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 
-namespace Hive.Revit.Services
+namespace Hive.Revit.Factory
 {
     public class VentilationScheduleFactory
     {

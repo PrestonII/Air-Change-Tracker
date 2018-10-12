@@ -77,18 +77,18 @@
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Services\ElementLocationService.cs" />
     <Compile Include="Services\RevitParameterUtility.cs" />
-    <Compile Include="Services\RevitElementConversionFactory.cs" />
-    <Compile Include="Services\RevitScheduleFactory.cs" />
-    <Compile Include="Services\SpaceConversionFactory.cs" />
+    <Compile Include="Factory\RevitConversionFactory.cs" />
+    <Compile Include="Factory\RevitScheduleFactory.cs" />
+    <Compile Include="Factory\SpaceConversionFactory.cs" />
     <Compile Include="Services\SpacePropertyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Applications\VentilationResolutionApp.cs" />
     <Compile Include="Commands\Mechanical\CreateVentilationRequirementsScheduleCommand.cs" />
     <Compile Include="Commands\Mechanical\CompareModelAndCodeVentilationCommand.cs" />
-    <Compile Include="Services\VentilationParameterFactory.cs" />
+    <Compile Include="Factory\VentilationParameterFactory.cs" />
     <Compile Include="Services\SpaceVentilationService.cs" />
     <Compile Include="Services\VentilationParameterUtility.cs" />
-    <Compile Include="Services\VentilationScheduleFactory.cs" />
+    <Compile Include="Factory\VentilationScheduleFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="hive.addin">

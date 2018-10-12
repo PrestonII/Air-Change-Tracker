@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
 using Autodesk.Revit.DB;
+using Hive.Revit.Services;
 
-namespace Hive.Revit.Services
+namespace Hive.Revit.Factory
 {
     public class VentilationParameterFactory
     {

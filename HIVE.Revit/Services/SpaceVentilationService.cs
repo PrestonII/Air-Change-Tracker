@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
+using Hive.Revit.Factory;
 
 namespace Hive.Revit.Services
 {
