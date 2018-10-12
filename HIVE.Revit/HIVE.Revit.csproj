@@ -75,6 +75,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Extensions\ElementExtensions.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
+    <Compile Include="Extensions\ViewScheduleExtensions.cs" />
     <Compile Include="Services\ElementLocationService.cs" />
     <Compile Include="Services\RevitParameterUtility.cs" />
     <Compile Include="Factory\RevitConversionFactory.cs" />

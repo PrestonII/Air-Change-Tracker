@@ -5,6 +5,7 @@ using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using Hive.Domain.Services.Ventilation;
+using Hive.Revit.Extensions;
 using Hive.Revit.Factory;
 
 namespace Hive.Revit.Services
@@ -37,7 +38,7 @@ namespace Hive.Revit.Services
 
         public static bool ModelHasVentParameters(Document doc)
         {
-            return VentParameters.All(p => RevitParameterUtility.ModelHasParameter(doc, BuiltInCategory.OST_MEPSpaces, p));
+            return VentParameters.All(p => doc.HasParameter(BuiltInCategory.OST_MEPSpaces, p));
         }
 
         public static IList<Parameter> CreateVentParametersInModel(Document doc)
@@ -49,7 +50,7 @@ namespace Hive.Revit.Services
 
         public static IList<Parameter> GetVentParametersFromModel(Document doc)
         {
-            var ventParams = VentParameters.Select(p => RevitParameterUtility.GetParameterFromCategory(doc, BuiltInCategory.OST_MEPSpaces, p)).ToList();
+            var ventParams = VentParameters.Select(p => doc.GetParameterFromCategory(BuiltInCategory.OST_MEPSpaces, p)).ToList();
 
             return ventParams;
         }
@@ -70,7 +71,7 @@ namespace Hive.Revit.Services
 
             foreach (var p in ventParams)
             {
-                if (!RevitParameterUtility.ModelHasParameter(doc, p))
+                if (!doc.HasParameter(p))
                     RevitParameterUtility.BindParameterToCategory(doc, spaceCat, p);
             }
         }
@@ -120,7 +121,7 @@ namespace Hive.Revit.Services
         {
             foreach (var p in parameters)
             {
-                if(!RevitParameterUtility.ScheduleHasParameter(schedule, p))
+                if(!schedule.HasParameter(p))
                     AddParameterToSchedule(schedule, p);
             }
         }
@@ -134,7 +135,7 @@ namespace Hive.Revit.Services
         {
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var achr = VentilationLookupService.GetACHRBasedOnOccupancyCategory(spaceType);
-            RevitParameterUtility.SetParameterValue(space, "ACHR", achr.ToString());
+            space.SetParameterValue("ACHR", achr.ToString());
         }
 
         /// <summary>
@@ -145,7 +146,7 @@ namespace Hive.Revit.Services
         {
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var oaachr = VentilationLookupService.GetOAACHRBasedOnOccupancyCategory(spaceType);
-            RevitParameterUtility.SetParameterValue(space, "OAACHR", oaachr.ToString());
+            space.SetParameterValue("OAACHR", oaachr.ToString());
         }
 
         public static void AssignACHMBasedOnCategory(Space space)
@@ -154,7 +155,7 @@ namespace Hive.Revit.Services
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var dSpace = factory.Create(space);
             var achm = VentilationCalculationService.CalculateCFMBasedOnSupplyACH(dSpace);
-            RevitParameterUtility.SetParameterValue(space, "ACHM", achm.ToString());
+            space.SetParameterValue("ACHM", achm.ToString());
         }
 
         public static void AssignOAACHMBasedOnCategory(Space space)
@@ -163,14 +164,14 @@ namespace Hive.Revit.Services
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var dSpace = factory.Create(space);
             var oaachm = VentilationCalculationService.CalculateCFMBasedOnSupplyACH(dSpace);
-            RevitParameterUtility.SetParameterValue(space, "OAACHM", oaachm.ToString());
+            space.SetParameterValue("OAACHM", oaachm.ToString());
         }
 
         public static void AssignRequiredPressurization(Space space)
         {
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var press = VentilationLookupService.GetRequirePressurizationBasedOnOccupancy(spaceType);
-            RevitParameterUtility.SetParameterValue(space, "PRESSURIZATION_REQ", press.ToString());
+            space.SetParameterValue("PRESSURIZATION_REQ", press.ToString());
         }
 
         public static void AssignModeledPressurization(Space space)
@@ -179,7 +180,7 @@ namespace Hive.Revit.Services
             var spaceType = SpacePropertyService.GetSpaceTypeAsString(space);
             var dSpace = factory.Create(space);
             var press = VentilationCalculationService.CalculateModeledPressurization(dSpace);
-            RevitParameterUtility.SetParameterValue(space, "PRESSURIZATION_MOD", press.ToString());
+            space.SetParameterValue("PRESSURIZATION_MOD", press.ToString());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autodesk.Revit.DB;
+using Hive.Revit.Extensions;
 using Hive.Revit.Services;
 
 namespace Hive.Revit.Factory
@@ -22,7 +23,7 @@ namespace Hive.Revit.Factory
 
             foreach (var d in defs)
             {
-                var p = RevitParameterUtility.GetParameterFromCategory(doc, BuiltInCategory.OST_MEPSpaces, d.Name);
+                var p = doc.GetParameterFromCategory(BuiltInCategory.OST_MEPSpaces, d.Name);
                 pars.Add(p);
             }
 
