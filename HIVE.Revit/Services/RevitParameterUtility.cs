@@ -164,13 +164,13 @@ namespace Hive.Revit.Services
 
         public static bool ScheduleHasParameter(ViewSchedule schedule, Parameter parameter)
         {
-            var data = schedule.GetTableData().GetSectionData(SectionType.Body);
-            var count = data.NumberOfColumns;
+            var bodyData = schedule.GetTableData().GetSectionData(SectionType.Body);
+            var count = bodyData.NumberOfColumns;
 
             for (var i = 0; i < count; i++)
             {
-                var id = data.GetCellParamId(i); // figure out things here
-                var name = data.GetCellText(0, i);
+                var field = schedule.Definition.GetField(i);
+                var id = field.ParameterId;
 
                 if (id == parameter.Id)
                     return true;
